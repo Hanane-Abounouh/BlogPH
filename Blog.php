@@ -54,7 +54,18 @@ if (!$result) {
          
              <h1 class="text-2xl mt-2  font-semibold leading-none tracking-tighter text-center text-[#000000] lg:text-2xl"><?php echo $row['titre']; ?></h1></h1>
              <h6 class="  mt-1 leading-none  font-semibold tracking-tighter text-center text-[#000000]"><?php echo $row['sous_titre']; ?></h6>
-             <p class="text-base mt-6 justify-center leading-relaxed text-[#000000]"><?php echo $row['contenu']; ?></p>
+
+                     <p class="text-base mt-6 justify-center leading-relaxed text-[#000000]">
+             <?php 
+             // Couper le contenu à environ 80 mots
+             $content = $row['contenu'];
+             $content_words = explode(" ", $content); // Diviser le contenu en mots
+             $limited_content = implode(" ", array_slice($content_words, 0, 30)); // Prendre les 80 premiers mots
+             echo $limited_content;
+            ?>
+            ....
+           
+        </p>
 
 
              <div class="mt-6">
