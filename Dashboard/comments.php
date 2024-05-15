@@ -9,6 +9,14 @@
 
 </head>
 <body>
+<div class="flex gap-5 items-center text-gray-600 mt-5 hover:text-gray-900 ">
+                    <!-- Intégration de l'icône SVG -->
+                    <img src="https://icons.veryicon.com/png/o/commerce-shopping/online-retailers/comment-42.png" jsaction="VQAsE" class="sFlh5c pT0Scc iPVvYb" 
+                        style="max-width: 30px; height: 30px; width: 30px;" alt="icon-article Vector Icons free download in SVG, PNG Format" jsname="kn3ccd" aria-hidden="false">
+                        <span class="text-2xl text-blue-600 font-bold">Comments</span> 
+                        <!-- Titre "Articles" -->
+                        
+                </div>
 <!-- comment -->
                         <div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
                     <!-- Add User -->

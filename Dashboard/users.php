@@ -9,10 +9,14 @@
 
 </head>
 <body>
-    <div class="p-4">
-    <h1 class="text-2xl font-bold">Welcome to my dashboard!</h1>
-    <p class="mt-2 text-gray-600">This is an example dashboard using Tailwind CSS.</p>
-    <div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
+<div class="flex gap-5 items-center text-gray-600 mt-5 hover:text-gray-900 ">
+                    <!-- Intégration de l'icône SVG -->
+                    <img src="https://icons.veryicon.com/png/o/miscellaneous/management-console-icon-update-0318/users-84.png" jsaction="VQAsE" class="sFlh5c pT0Scc iPVvYb" 
+                        style="max-width: 30px; height: 30px; width: 30px;" alt="icon-article Vector Icons free download in SVG, PNG Format" jsname="kn3ccd" aria-hidden="false">
+                        <span class="text-2xl text-blue-600 font-bold">Users</span> 
+                        <!-- Titre "Articles" -->
+                        
+                </div>
         <!-- Add User -->
         <td class="py-4 px-6 text-center border-b border-gray-200">
             <div class="flex justify-end">
