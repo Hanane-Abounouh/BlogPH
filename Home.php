@@ -60,7 +60,7 @@
         }
 
         // Requête SQL pour récupérer les trois derniers articles par date
-        $sql = "SELECT * FROM articles ORDER BY date_publication DESC LIMIT 3";
+        $sql = "SELECT * FROM articles ORDER BY date_publication ASC LIMIT 3";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
