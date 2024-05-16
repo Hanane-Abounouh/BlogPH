@@ -10,32 +10,34 @@
 
 <!-- la connexion de base de données  -->
 <?php
+// Inclure le fichier de connexion
+include 'connection.php';
+
 // Vérifier si l'identifiant de l'article est présent dans l'URL
 if(isset($_GET['id']) && !empty($_GET['id'])) {
     // Récupérer l'identifiant de l'article depuis l'URL
-    $article_id = $_GET['id'];
-
-    // Connexion à la base de données
-    try {
-        $bddPDO = new PDO('mysql:host=localhost;dbname=phblog','root','');
-    }
-    catch (PDOException $e) {
-        echo "<p>Erreur:".$e->getMessage();
-        die();
-    }
+    $id_article = $_GET['id'];
 
     // Préparer la requête SQL pour récupérer les détails de l'article avec l'identifiant spécifié
-    $requete = "SELECT articles.*, utilisateurs.nom_utilisateur FROM articles JOIN utilisateurs ON articles.id_utilisateur = utilisateurs.id_utilisateur WHERE articles.id_article = :article_id";
+    $requete = "SELECT articles.*, utilisateurs.nom_utilisateur FROM articles JOIN utilisateurs ON articles.id_utilisateur = utilisateurs.id_utilisateur WHERE articles.id_article = :id_article";
     $statement = $bddPDO->prepare($requete);
-    $statement->execute(array(':article_id' => $article_id));
+    $statement->execute(array(':id_article' => $id_article));
 
-// Récupérer les détails de l'article et le nom de l'utilisateur
+    // Récupérer les détails de l'article et le nom de l'utilisateur
     $row = $statement->fetch(PDO::FETCH_ASSOC);
 
-// Afficher les détails de l'article et le nom de l'utilisateur
-   if ($row) {
-     // Votre code HTML pour afficher les détails de l'article ici
-    ?>
+    // Afficher les détails de l'article et le nom de l'utilisateur
+    if ($row) {
+        
+    } else {
+        echo "Aucun article trouvé avec cet identifiant.";
+    }
+} else {
+    echo "Identifiant de l'article non spécifié dans l'URL.";
+}
+?>
+
+    
 
 <?php include 'navbar.php'; ?>
 
@@ -113,14 +115,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 <?php include 'footer.php'; ?>
 
 
-<?php
-    } else {
-        echo "Aucun article trouvé avec cet identifiant.";
-    }
-} else {
-    echo "Identifiant de l'article non spécifié dans l'URL.";
-}
-?>
+
 
 </body>
 </html>
