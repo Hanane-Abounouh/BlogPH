@@ -114,8 +114,18 @@ if (!$result) {
     <?php include 'footer.php'; ?>
 
    
-    <
- 
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Récupérer le bouton par son ID
+        var commentButton = document.getElementById("comment-btn");
+
+        // Ajouter un gestionnaire d'événements au clic sur le bouton
+        commentButton.addEventListener("click", function() {
+            // Rediriger l'utilisateur vers la page comment.php
+            window.location.href = "comment.php";
+        });
+    });
+</script>
     
 </body>
 </html>

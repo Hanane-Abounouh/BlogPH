@@ -120,12 +120,7 @@ if(isset($_POST['id_article']) && isset($_SESSION['id_utilisateur'])) {
         // L'utilisateur a déjà liké cet article, donc nous ne faisons rien
         echo json_encode(array('success' => false, 'message' => 'Vous avez déjà liké cet article.'));
     }
-} else {
-    // Répondre avec une erreur si les données requises ne sont pas présentes
-    // Rediriger vers la page login.php
-    header("Location: login.php");
-    exit(); // Assurez-vous d'arrêter l'exécution du script après la redirection
-}
+} 
 ?>
 
 

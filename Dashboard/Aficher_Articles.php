@@ -12,7 +12,7 @@
 
 <body>
 
-
+  
     <section class="justify-center items-center ">
 
 
@@ -31,7 +31,7 @@
             <!-- Bouton -->
            <!-- Bouton -->
            <div class="flex justify-end w-full">
-           <a href="ajouter_Article.php" class="sidebar-link bg-[#245DCA] text-white px-3 py-1 rounded-lg text-xl">Ajouter</a>
+           <a href="/BlogPH/Dashboard/ajouter_Article.php" class="sidebar-link bg-[#245DCA] text-white px-3 py-1 rounded-lg text-xl">Ajouter</a>
            </div>
 
 
@@ -85,7 +85,7 @@
 
 
 
-                    <div class="flex items-center space-x-3 justify-end">
+                    <div class="flex items-center space-x-3 mt-5 justify-end">
                         <!-- Div avec des icônes espacées -->
                         <!-- Icône de "like" -->
                         <div class="flex items-center gap-1 text-gray-600 hover:text-gray-900 cursor-pointer">
@@ -112,6 +112,17 @@
                             <!-- Ajustement de taille -->
                             <span class="text-[#464646]">56</span> <!-- Nombre de "likes" -->
                         </div>
+
+                        <a href="modifier_article.php?id=<?php echo htmlspecialchars($row['id_article']); ?>" class="text-blue-600 text-2xl">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2lfFEP7nC0SFy-ExtRX1Dn9-kaRi7pwprWx1sGp0bGA&amp;s" 
+         jsaction="VQAsE" 
+         class="sFlh5c pT0Scc" 
+         alt="Modify Svg Png Icon Free Download (#359924) - OnlineWebFonts.COM" 
+         jsname="JuXqh" 
+         style="max-width: 20px; width: 20px; height: 20px; " 
+         data-ilt="1715953946910">
+</a>
+
                         <div>
                             <td class="py-4 px-6 border-b border-gray-200">
                                 <span

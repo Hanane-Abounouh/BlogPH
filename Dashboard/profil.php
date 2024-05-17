@@ -9,6 +9,7 @@
 
 </head>
 <body>
+
 <div class="flex gap-5 items-center text-gray-600 mt-5 hover:text-gray-900 ">
                     <!-- Intégration de l'icône SVG -->
                     <img src="https://icons.veryicon.com/png/o/commerce-shopping/dream-icon-library/profile-12.png" jsaction="VQAsE" class="sFlh5c pT0Scc iPVvYb" 
