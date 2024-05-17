@@ -10,7 +10,7 @@ class crud{
         catch (PDOException $e){
             echo "Connection failed: " . $e->getMessage();
             die();
-        }       
+        }
     }
 
     public function insertData($name,$lastname,$email,$password,$id,$mobil)
@@ -52,6 +52,6 @@ class crud{
             echo "Error: " . $e->getMessage();
         }
     }
-    
+
 }
 ?>

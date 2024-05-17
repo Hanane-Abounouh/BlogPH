@@ -1,7 +1,7 @@
 <?php
 require 'connex.php';
 $p=new crud('phblog','localhost','root','');
-if(isset($_POST['sign-button'])){  
+if(isset($_POST['sign-button'])){
     $name=$_POST['name'];
     $email=$_POST['email'];
     $password=$_POST['password'];
