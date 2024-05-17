@@ -38,7 +38,6 @@
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $database);
-                
 
                 // Check connection
                 if ($conn->connect_error) {
@@ -94,8 +93,10 @@
                 <div class="mb-4">
                     <label for="role" class="block text-gray-700 font-bold mb-2">Role:</label>
                     <select id="role" name="role" class="border rounded-lg px-4 py-2 w-full">
-                        <!-- Options pour les rôles -->
-                    </select>
+        <?php foreach ($roles as $role): ?>
+            <option value="<?php echo $role['id_role']; ?>"><?php echo $role['nom_Role']; ?></option>
+        <?php endforeach; ?>
+    </select>
                 </div>
                 <div class="flex justify-end">
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add</button>
