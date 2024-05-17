@@ -2303,6 +2303,11 @@ video {
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
 }
 
+.bg-blue-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+}
+
 .bg-gray-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
@@ -2516,6 +2521,11 @@ video {
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+}
+
+.px-32 {
+  padding-left: 8rem;
+  padding-right: 8rem;
 }
 
 .px-4 {
@@ -3350,10 +3360,6 @@ video {
   forced-color-adjust: none;
 }
 
-.btn{
-  background-color: #504040;
-}
-
 h1{
   color: blue;
 }
@@ -3859,6 +3865,7 @@ h1{
     }
   }
 }
+
 
 
  
