@@ -19,10 +19,7 @@
                 <form class="max-w-md mx-auto" action="signUp.php" method= "POST">
                     <div class="register p-6 space-y-4 md:space-y-6  ">
                     <h1 class=" pt-10 w-80 ">Set up your<span class="text-blue-700">account</span></h1>
-                    <div class="input-group">
-                
-                        <input type="id" name="id_role" id="id" class="bg-gray-50 border border-blue-600 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="id Address" required="">
-                    </div>
+                   
                     <div class="input-group">
                 
                         <input type="text" name="name" id="name" class="bg-gray-50 border border-blue-600 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name" >
