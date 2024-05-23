@@ -24,6 +24,19 @@ h1{
 .text-red-500 {
     color: #EF4444; /* Rouge */
 }
+.comment-section {
+    display: none;
+}
+
+#comments-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.comment-item {
+    margin-bottom: 10px;
+}
+
 
 
 

@@ -60,12 +60,27 @@
                                     <i class='fas fa-trash-alt'></i>
                                 </button>
                               </td>";
+                              
+                          
                         echo "</tr>";
                     }
                 } else {
                     echo "<tr><td class='py-4 px-6 text-center border-b border-gray-200' colspan='5'>No users found.</td></tr>";
                 }
+                $sqlRoles = "SELECT * FROM roles";
+                $resultRoles = $conn->query($sqlRoles);
 
+                // Check if roles are retrieved successfully
+               if ($resultRoles->num_rows > 0) {
+               // Store retrieved roles in an array
+               $roles = [];
+               while ($row = $resultRoles->fetch_assoc()) {
+                 $roles[] = $row;
+    }
+                } else {
+              echo "No roles found.";
+               }
+   
                 // Close the connection
                 $conn->close();
                 ?>
@@ -77,7 +92,7 @@
     <div id="addUserForm" class="hidden fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center">
         <div class="bg-white p-8 rounded-lg">
             <h2 class="text-xl font-bold mb-4">Add User</h2>
-            <form id="userForm">
+            <form id="userForm" id="userForm" method="POST" action="add_user.php">
                 <div class="mb-4">
                     <label for="fullName" class="block text-gray-700 font-bold mb-2">Full Name:</label>
                     <input type="text" id="fullName" name="fullName" class="border rounded-lg px-4 py-2 w-full">
@@ -93,10 +108,11 @@
                 <div class="mb-4">
                     <label for="role" class="block text-gray-700 font-bold mb-2">Role:</label>
                     <select id="role" name="role" class="border rounded-lg px-4 py-2 w-full">
-        <?php foreach ($roles as $role): ?>
-            <option value="<?php echo $role['id_role']; ?>"><?php echo $role['nom_Role']; ?></option>
-        <?php endforeach; ?>
-    </select>
+                     <?php foreach ($roles as $role): ?>
+                     <option value="<?php echo $role['id_role']; ?>"><?php echo $role['nom_Role']; ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                 
                 </div>
                 <div class="flex justify-end">
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add</button>
@@ -142,22 +158,31 @@
             console.error('Error adding user:', error);
         });
     });
-
-    function deleteUser(userId) {
-        if (confirm('Are you sure you want to delete this user?')) {
-            // Send a request to delete the user
-            fetch('delete_user.php', {
-                method: 'POST',
-                body: JSON.stringify({ userId: userId }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    // Reload the page
-                    window.location.reload();
-                }
-            });
-        }
+function deleteUser(userId) {
+    if (confirm('Are you sure you want to delete this user?')) {
+        // Envoyer une demande POST à delete_user.php avec l'ID de l'utilisateur à supprimer
+        fetch('delete_user.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ userId: userId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Vérifier si la suppression a réussi
+            if (data.success) {
+                // Recharger la page
+                window.location.reload();
+            } else {
+                // Afficher un message d'erreur si la suppression a échoué
+                alert(data.message || 'Failed to delete user');
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting user:', error);
+        });
     }
+}
+
 </script>

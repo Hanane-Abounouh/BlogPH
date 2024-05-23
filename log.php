@@ -1,4 +1,4 @@
-<<?php
+<?php
 require "connection.php";
 
 $email = $_POST['email'];
@@ -38,6 +38,8 @@ if(true){
                 $_SESSION["nom_utilisateur"] = $row["nom_utilisateur"];
                 $_SESSION["id_utilisateur"] = $row["id_utilisateur"];
                 $_SESSION["id_role"] = $row["id_role"];
+                $_SESSION["email"] = $row["email"];
+
                 header("location: Home.php");
             } else {
                 // Password is incorrect
@@ -88,6 +90,7 @@ if(true){
                 $_SESSION["nom_utilisateur"] = $row["nom_utilisateur"];
                 $_SESSION["id_utilisateur"] = $row["id_utilisateur"];
                 $_SESSION["id_role"] = $row["id_role"];
+                $_SESSION["email"] = $row["email"];
                 header("location: Home.php");
             } else {
                 // Password is incorrect

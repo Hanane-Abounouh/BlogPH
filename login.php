@@ -7,11 +7,12 @@
   <title>Login</title>
 </head>
 <body>
-  <section class="bg-gray-50 dark:bg-gray-900" >
-    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 ">
+<?php include 'navbar.php'; ?>
+  <section class="bg-gray-50 dark:bg-gray-900 mt-5 " >
+    <div class="flex flex-col items-center mt-5 justify-center px-6 py-4 mx-auto md:h-screen lg:py-0 ">
 
-        <div class=" Login w-full h-5/6 rounded-lg shadow white:border md:mt-0 sm:max-w-96 xl:p-0">
-            <div class="p-6 space-y-4 md:space-y-6 sm:p-8  ml-5">
+        <div class=" Login w-full h-4/6  rounded-lg shadow white:border border border-black md:mt-0 sm:max-w-96 xl:p-0">
+            <div class="p-8 space-y-4 md:space-y-6 sm:p-8  ml-5">
                
                 <div class="login">
                 <h1 class="text-2xl font-bold" >Login</h1>
@@ -45,5 +46,6 @@
         </div>
     </div>
   </section>
+  <?php include 'footer.php'; ?>
 </body>
 </html>

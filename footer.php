@@ -8,7 +8,7 @@
 </head>
 <body>
 <footer class="w-full">
-    <div class="bg-[#175CE1]  mt-20 text-white">
+    <div class="bg-[#175CE1]  mt-10 text-white">
       <div class="container px-40 mx-auto">
         <div class="-mx-4 flex flex-wrap justify-between">
           <div class="px-4 my-4 w-full xl:w-1/3">

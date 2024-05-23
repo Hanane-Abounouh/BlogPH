@@ -10,15 +10,15 @@
     <title>Register</title>
 </head>
 <body>
-
+   <?php include 'navbar.php'; ?>
 
     <section class="flex justify-center items-center h-screen" id="signup">
         <div class=" flex items-center justify-center w-3/5   bg-cover bg-center md:rounded-xl" style="height:32rem; background-image: url('image/Capture.PNG');">
-            <div class="flex items-center   rounded-s justify-center h-full w-full bg-blue-50 bg-opacity-50">
+            <div class="flex items-center border border-black   rounded-s justify-center h-full w-full bg-blue-50 bg-opacity-50">
             <div class="text-center w-full ">
                 <form class="max-w-md mx-auto" action="signUp.php" method= "POST">
                     <div class="register p-6 space-y-4 md:space-y-6  ">
-                    <h1 class=" pt-10 w-80 ">Set up your<span class="text-blue-700">account</span></h1>
+                    <h1 class=" pt-10 w-80 text-xl ">Set up your<span class="text-blue-700">account</span></h1>
                    
                     <div class="input-group">
                 
@@ -56,6 +56,6 @@
         </section>
   
     
-    
+        <?php include 'footer.php'; ?>
 </body>
 </html>

@@ -89,7 +89,7 @@ if (!$result) {
         <span class="text-[#464646]">J'aime</span>
     </button>
 
-    <button id="comment-btn" class="flex gap-1">
+    <button  class="flex gap-1">
     <!-- Icône de commentaire -->
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXMjNvC8B_jmTrgCxLhnjEsVatUlZcgdvJiKKndG3OBvBR3WCvokt2J_RiDgrsNea9jZA&amp;usqp=CAU" 
         jsaction="VQAsE" class="sFlh5c pT0Scc" alt="IconExperience » I-Collection » Message Icon" 
@@ -114,18 +114,6 @@ if (!$result) {
     <?php include 'footer.php'; ?>
 
    
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Récupérer le bouton par son ID
-        var commentButton = document.getElementById("comment-btn");
-
-        // Ajouter un gestionnaire d'événements au clic sur le bouton
-        commentButton.addEventListener("click", function() {
-            // Rediriger l'utilisateur vers la page comment.php
-            window.location.href = "comment.php";
-        });
-    });
-</script>
     
 </body>
 </html>

@@ -1,3 +1,12 @@
+
+<?php
+
+session_start(); 
+
+// Vérifiez si l'utilisateur est connecté et s'il a le rôle d'administrateur
+if(isset($_SESSION['id_role']) && $_SESSION['id_role'] == 1) {
+    // Si oui, générez le code HTML du dashboard
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +36,7 @@
                         </a>
                     </div>
                     <div class="flex flex-col flex-1 gap-3"> 
-                        <a href="./home" class=" sidebar-link flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-400 hover:bg-opacity-25 rounded-2xl">
+                        <a href="../home.php" class="  flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-400 hover:bg-opacity-25 rounded-2xl">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="margin-right: 80 px">
                                 <path fill="currentColor" fill-rule="evenodd" d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6l2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2z" clip-rule="evenodd" />
                             </svg>
@@ -121,7 +130,13 @@
         
     </div>
 
-
+    <?php
+} else {
+    // Si l'utilisateur n'est pas un administrateur, vous pouvez rediriger vers une autre page ou afficher un message
+    header('Location: ../login.php'); // Redirigez vers une autre page
+    exit; // Arrêtez l'exécution du script
+}
+?>
 
     <script>
         // Add click event listener to sidebar links
@@ -148,6 +163,30 @@
         // Affiche le formulaire pour ajouter un utilisateur
         document.getElementById('addUserForm').classList.remove('hidden');
     }
+    
+    function deleteUser(userId) {
+        if (confirm('Are you sure you want to delete this user?')) {
+            // Send a request to delete the user
+            fetch('delete_user.php', {
+                method: 'POST',
+                body: JSON.stringify({ userId: userId }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // Reload the page
+                    window.location.reload();
+                }
+            });
+        }
+    }
+    function showModifyForm(commentId) {
+            // Mettre à jour la valeur de l'ID du commentaire dans le formulaire
+            document.getElementById('commentId').value = commentId;
+            // Afficher le conteneur du formulaire de modification
+            document.getElementById('modifyFormContainer').classList.remove('hidden');
+        }
     </script>
 </body>
 </html>

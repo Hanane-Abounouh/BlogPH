@@ -12,11 +12,27 @@ function getCategories($bddPDO) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Vérification de la soumission du formulaire
+// Vérification si l'article existe avant de le charger pour la modification
+if(isset($_GET['id'])) {
+    $id_article = $_GET['id'];
+    $stmt = $bddPDO->prepare("SELECT * FROM articles WHERE id_article = :id_article");
+    $stmt->bindParam(':id_article', $id_article);
+    $stmt->execute();
+    $article = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$article) {
+        echo "Article non trouvé.";
+        exit;
+    }
+} else {
+    echo "ID d'article non spécifié.";
+    exit;
+}
+
+// Traitement de la soumission du formulaire de mise à jour
 if(isset($_POST['update_article'])) {
     $id_article = $_POST['id_article'];
     $titre = $_POST['titre'];
-    $Contenu = $_POST['contenu'];
+    $contenu = $_POST['contenu'];
     $sous_titre = $_POST['sous_titre'];
     $date_publication = $_POST['date_publication'];
     $id_utilisateur = $_POST['id_utilisateur'];
@@ -46,7 +62,7 @@ if(isset($_POST['update_article'])) {
 
     $stmt = $bddPDO->prepare($query);
     $stmt->bindParam(':titre', $titre);
-    $stmt->bindParam(':contenu', $Contenu);
+    $stmt->bindParam(':contenu', $contenu);
     $stmt->bindParam(':sous_titre', $sous_titre);
     $stmt->bindParam(':date_publication', $date_publication);
     $stmt->bindParam(':id_utilisateur', $id_utilisateur);
@@ -62,19 +78,6 @@ if(isset($_POST['update_article'])) {
     } else {
         echo "Erreur lors de la mise à jour de l'article.";
     }
-} elseif (isset($_GET['id'])) {
-    $id_article = $_GET['id'];
-    $stmt = $bddPDO->prepare("SELECT * FROM articles WHERE id_article = :id_article");
-    $stmt->bindParam(':id_article', $id_article);
-    $stmt->execute();
-    $article = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$article) {
-        echo "Article non trouvé.";
-        exit;
-    }
-} else {
-    echo "ID d'article non spécifié.";
-    exit;
 }
 ?>
 
@@ -103,45 +106,40 @@ if(isset($_POST['update_article'])) {
                 <input type="hidden" name="id_article" value="<?php echo htmlspecialchars($article['id_article']); ?>">
                 <label for="Titre" class="block text-sm font-semibold leading-6 text-gray-900">Titre</label>
                 <input id="titre" name="titre" placeholder='Titre' class="w-full rounded-md py-2.5 px-4 border text-sm outline-[#007bff]"
-                       value="<?php echo htmlspecialchars($article['titre']); ?>" />
+                       value="<?php echo isset($article['titre']) ? htmlspecialchars($article['titre']) : ''; ?>" />
                 <div class="col-span-full">
-                    <label for="Subject" class="block text-sm font-semibold leading-6 text-gray-900">sous-titre</label>
-                    <input type='text' placeholder='Subject' name='sous_titre' class="w-full rounded-md py-2.5 px-4 border text-sm outline-[#007bff]"
-                           value="<?php echo htmlspecialchars($article['sous_titre']); ?>" />
+                    <label for="Subject" class="block text-sm font-semibold leading-6 text-gray-900">Sous-titre</label>
+                    <input type='text' placeholder='Sous-titre' name='sous_titre' class="w-full rounded-md py-2.5 px-4 border text-sm outline-[#007bff]"
+                           value="<?php echo isset($article['sous_titre']) ? htmlspecialchars($article['sous_titre']) : ''; ?>" />
                 </div>
                 <div>
                     <label for="image" class="block text-sm font-semibold leading-6 text-gray-900">Image</label>
                     <input type="file" name="image" id="image" class="rounded-md bg-gray px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-600 hover:bg-gray-500"></input>
                 </div>
                 <div class="mb-2"></div>
-                <label for="contenu" class="block text-sm font-semibold leading-6 text-gray-900">contenu</label>
-                <textarea placeholder='Subtitle' rows="6" id="Contenu" name="contenu"
-                          class="w-full rounded-md px-4 border text-sm pt-2.5 outline-[#007bff]"><?php echo htmlspecialchars($article['contenu']); ?></textarea>
-                <label for="date_publication" class="block text-sm font-semibold leading-6 text-gray-900">Date de publication:</label><br>
-                <input type="date" id="date_publication" name="date_publication" value="<?php echo htmlspecialchars($article['date_publication']); ?>"><br>
-                <div class="mb-2">
-                    <label for="id_utilisateur" class="block font-semibold mb-2">Utilisateur:</label></br>
-                    <select id="id_utilisateur" name="id_utilisateur" class="w-full border rounded-md px-3 py-2">
-                        <?php foreach (getUsers($bddPDO) as $user): ?>
-                            <option value="<?php echo $user['id_utilisateur']; ?>" <?php if ($user['id_utilisateur'] == $article['id_utilisateur']) echo 'selected'; ?>>
-                                <?php echo htmlspecialchars($user['nom_utilisateur']); ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="mb-2">
-                    <label for="id_categorie" class="block font-semibold mb-2">Catégorie:</label></br>
-                    <select id="id_categorie" name="id_categorie" class="w-full border rounded-md px-3 py-2">
-                        <?php foreach (getCategories($bddPDO) as $category): ?>
-                            <option value="<?php echo $category['id_categorie']; ?>" <?php if ($category['id_categorie'] == $article['id_categorie']) echo 'selected'; ?>>
-                                <?php echo htmlspecialchars($category['nom_categorie']); ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <button type="submit" name="update_article" class="text-white bg-[#E53902] hover:bg-orange-500 font-semibold rounded-md text-l px-4">Update</button>
-            </form>
-        </div>
-    </div>
+                <label for="contenu" class="block text-sm font-semibold leading-6 text-gray-900">Contenu</label>
+                <textarea placeholder='Contenu' name='contenu' class="w-full h-32 rounded-md py-2.5 px-4 border text-sm outline-[#007bff]"><?php echo isset($article['contenu']) ? htmlspecialchars($article['contenu']) : ''; ?></textarea>
+<label for="date_publication" class="block text-sm font-semibold leading-6 text-gray-900">Date de publication</label>
+<input type="date" name="date_publication" id="date_publication" class="rounded-md bg-gray px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-600 hover:bg-gray-500" value="<?php echo isset($article['date_publication']) ? htmlspecialchars($article['date_publication']) : ''; ?>">
+<label for="id_utilisateur" class="block text-sm font-semibold leading-6 text-gray-900">Auteur</label>
+<select name="id_utilisateur" id="id_utilisateur" class="w-full rounded-md py-2.5 px-4 border text-sm outline-[#007bff]">
+    <?php foreach (getUsers($bddPDO) as $user): ?>
+        <option value="<?php echo $user['id_utilisateur']; ?>" <?php echo ($user['id_utilisateur'] == $article['id_utilisateur']) ? 'selected' : ''; ?>><?php echo $user['nom_utilisateur']; ?></option>
+    <?php endforeach; ?>
+</select>
+<label for="id_categorie" class="block text-sm font-semibold leading-6 text-gray-900">Catégorie</label>
+<select name="id_categorie" id="id_categorie" class="w-full rounded-md py-2.5 px-4 border text-sm outline-[#007bff]">
+    <?php foreach (getCategories($bddPDO) as $categorie): ?>
+        <option value="<?php echo $categorie['id_categorie']; ?>" <?php echo ($categorie['id_categorie'] == $article['id_categorie']) ? 'selected' : ''; ?>><?php echo $categorie['nom_categorie']; ?></option>
+    <?php endforeach; ?>
+</select>
+<div class="flex justify-between mt-8">
+    <button type="submit" name="update_article" class="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Mettre à jour</button>
+    <a href="Dashboard.php" class="px-6 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">Annuler</a>
+</div>
+</form>
+</div>
+</div>
 </section>
 </body>
+</html>
